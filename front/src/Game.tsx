@@ -55,7 +55,7 @@ export default function Game({personColor, aiColor, ballColor}: any) {
         player1.y = canvas.height - player1.height - 2;
     });
     setInterval(()=> Prepare(canvas, ctx, ball, player1, player2, image), 1000 / FPS);
-    setInterval(()=> Update(canvas, ctx, ball, player1, player2), 1000 / FPS / ball.speed);
+    setInterval(()=> Update(canvas, ctx, ball, player1, player2), 6);
   }, []);
   return (
     <center>

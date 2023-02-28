@@ -49,15 +49,16 @@ export default function Update(canvas: HTMLCanvasElement, ctx: CanvasRenderingCo
         const temp: Ball = createBall(canvas, ball.color, ball.reverseColor);
         ball.x = temp.x;
         ball.y = temp.y;
-        ball.speed = temp.x;
+        ball.speedX = temp.speedX;
+        ball.speedY = temp.speedY;
         ball.velocityX = temp.velocityX;
         ball.velocityY = temp.velocityY;
         ball.stop = true;
         setTimeout(() => {
             ball.stop = false;
-        }, 3000);
+        }, 1000);
     }
-    else if (collision(ball, player1, true) || collision(ball, player2, false)) {ball.velocityX *= -1.02; ball.velocityY *= 1.10;}
+    else if (collision(ball, player1, true) || collision(ball, player2, false)) {ball.velocityX *= -(1 + (ball.speedX / 100)); ball.velocityY *= (1 + (ball.speedY / 100));}
     if (ball.y >= canvas.height || ball.y <= 0) ball.velocityY *= -1;
     if (ball.velocityX >= ball.maxX) ball.velocityX = Math.random() * ball.maxX;
     else if (ball.velocityX <= -ball.maxX) ball.velocityX = -1 * Math.random() * ball.maxX;
