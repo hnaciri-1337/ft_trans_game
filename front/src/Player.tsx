@@ -10,4 +10,5 @@ export interface Player
   reverseColor: string;
   score: number;
   ai: number;
+  aiStep: number;
 }

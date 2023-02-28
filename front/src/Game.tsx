@@ -32,7 +32,8 @@ export default function Game({personColor, aiColor, ballColor}: any) {
       color: personColor,
       reverseColor: getReverse(personColor),
       score: 0,
-      ai: 0
+      ai: 0,
+      aiStep: 1.1
     };
     let player2: Player = {
       width: canvas.width - ((99 * canvas.width) / 100),
@@ -42,7 +43,8 @@ export default function Game({personColor, aiColor, ballColor}: any) {
       color: aiColor,
       reverseColor: getReverse(aiColor),
       score: 0,
-      ai: 1//ai level from 1 to 10
+      ai: 8,//ai level from 1 to 20
+      aiStep: 1.1
     };
     canvas.addEventListener("mousemove", (event : MouseEvent) => 
     {
@@ -60,7 +62,6 @@ export default function Game({personColor, aiColor, ballColor}: any) {
   return (
     <center>
       <div className="game-container">
-        <Badge bg='light' text='dark'>PLAYER UNO</Badge>
         <canvas id="pong" width="1920" height="1280"></canvas>
       </div>
     </center>

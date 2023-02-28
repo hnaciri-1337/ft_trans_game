@@ -41,9 +41,9 @@ export default function Update(canvas: HTMLCanvasElement, ctx: CanvasRenderingCo
         {
             player1.score++;
             console.log(player2.ai);
-            player2.ai *= 1.5;
-            if (player2.ai > 10)
-                player2.ai = 10;
+            player2.ai *= player2.aiStep;
+            if (player2.ai > 20)
+                player2.ai = 20;
             console.log(player2.ai);
         }
         const temp: Ball = createBall(canvas, ball.color, ball.reverseColor);
@@ -56,7 +56,7 @@ export default function Update(canvas: HTMLCanvasElement, ctx: CanvasRenderingCo
         ball.stop = true;
         setTimeout(() => {
             ball.stop = false;
-        }, 1000);
+        }, 1500);
     }
     else if (collision(ball, player1, true) || collision(ball, player2, false)) {ball.velocityX *= -(1 + (ball.speedX / 100)); ball.velocityY *= (1 + (ball.speedY / 100));}
     if (ball.y >= canvas.height || ball.y <= 0) ball.velocityY *= -1;
