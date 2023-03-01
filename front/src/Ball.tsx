@@ -14,19 +14,19 @@ export interface Ball
   stop: boolean;
 }
 
-export function createBall(canvas: HTMLCanvasElement, ballColor: string, ballReverse: string) : Ball
+export function createBall(canvas: HTMLCanvasElement, ballColor: string, ballReverse: string, maxSpeed: number) : Ball
 {
   let ball: Ball = 
   {
     x: canvas.width / 2,
     y: canvas.height / 2,
     radius: 15,
-    speedX: 11, // 1 to 100
-    speedY: 11, // 1 to 100
+    speedX: 5, // 1 to 100
+    speedY: 15, // 1 to 100
     velocityX: 0,
     velocityY: 0,
-    maxX: 20, // max speed X from 10 to 50
-    maxY: 30, // max speed Y from 10 to 50
+    maxX: maxSpeed, // max speed X from 10 to 50
+    maxY: maxSpeed * 1.5, // max speed Y from 10 to 50
     color: ballColor,
     reverseColor: ballReverse,
     stop: false

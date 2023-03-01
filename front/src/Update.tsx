@@ -42,11 +42,11 @@ export default function Update(canvas: HTMLCanvasElement, ctx: CanvasRenderingCo
             player1.score++;
             console.log(player2.ai);
             player2.ai *= player2.aiStep;
+            console.log(player2.ai);
             if (player2.ai > 20)
                 player2.ai = 20;
-            console.log(player2.ai);
         }
-        const temp: Ball = createBall(canvas, ball.color, ball.reverseColor);
+        const temp: Ball = createBall(canvas, ball.color, ball.reverseColor, ball.maxX);
         ball.x = temp.x;
         ball.y = temp.y;
         ball.speedX = temp.speedX;

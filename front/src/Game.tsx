@@ -14,16 +14,16 @@ function  getReverse(color: string): string
   return ("#" + reverseColor);
 }
 
-export default function Game({personColor, aiColor, ballColor}: any) {
+export default function Game({personColor, aiColor, ballColor, initSpeed, maxSpeed, aiLevel, backGround}: any) {
   useEffect(() =>
   {
     const FPS = 60;
-    const randomOption = "/background/" + (Math.floor(Math.random() * 5)).toString() + ".jpg";
+    const randomOption = "/background/" + backGround.toString() + ".jpg";
     const image = new Image();
     image.src = randomOption;
     const canvas = document.getElementById('pong') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    let   ball: Ball = createBall(canvas, ballColor, getReverse(ballColor));
+    let   ball: Ball = createBall(canvas, ballColor, getReverse(ballColor), maxSpeed);
     let player1: Player = {
       width: canvas.width - ((99 * canvas.width) / 100),
       height: canvas.height - ((80 * canvas.height) / 100),
@@ -33,7 +33,7 @@ export default function Game({personColor, aiColor, ballColor}: any) {
       reverseColor: getReverse(personColor),
       score: 0,
       ai: 0,
-      aiStep: 1.1
+      aiStep: 0
     };
     let player2: Player = {
       width: canvas.width - ((99 * canvas.width) / 100),
@@ -43,8 +43,8 @@ export default function Game({personColor, aiColor, ballColor}: any) {
       color: aiColor,
       reverseColor: getReverse(aiColor),
       score: 0,
-      ai: 8,//ai level from 1 to 20
-      aiStep: 1.1
+      ai: aiLevel * aiLevel,//ai level from 1 to 20
+      aiStep: 1.5
     };
     canvas.addEventListener("mousemove", (event : MouseEvent) => 
     {
@@ -57,7 +57,7 @@ export default function Game({personColor, aiColor, ballColor}: any) {
         player1.y = canvas.height - player1.height - 2;
     });
     setInterval(()=> Prepare(canvas, ctx, ball, player1, player2, image), 1000 / FPS);
-    setInterval(()=> Update(canvas, ctx, ball, player1, player2), 6);
+    setInterval(()=> Update(canvas, ctx, ball, player1, player2), initSpeed + 4);
   }, []);
   return (
     <center>
