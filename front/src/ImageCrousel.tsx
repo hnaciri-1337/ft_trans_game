@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Carousel } from '@mantine/carousel';
 
 export default function ImageCrousel(props: any) {
@@ -19,7 +19,8 @@ export default function ImageCrousel(props: any) {
         </Carousel.Slide>);
     }
     return (
-    <Carousel maw={960} mx="auto" withIndicators height={600} onSlideChange={handleSelect}>
+      
+      <Carousel height={426} maw={640} mx="auto" onSlideChange={handleSelect} loop>
       {items}
     </Carousel>
   );

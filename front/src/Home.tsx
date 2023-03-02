@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import { Button } from '@mantine/core';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
@@ -10,6 +10,7 @@ import { IoMdPerson, IoIosSpeedometer } from 'react-icons/io'
 import { GiGlassBall, GiFireworkRocket, GiArtificialIntelligence } from 'react-icons/gi'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import ImageCrousel from './ImageCrousel';
+import { ColorInput } from '@mantine/core';
 
 export default function Home(props: any) {
 
@@ -35,10 +36,10 @@ export default function Home(props: any) {
                         Welcome to hnaciri- ping-pong game
                     </Card.Title>
                     <>
-                        <Button variant="primary" onClick={handleShow}>
-                            <RiPingPongFill/> PLAY A GAME
+                        <Button color="cyan" radius="xs" uppercase onClick={handleShow} leftIcon={<RiPingPongFill size="1rem" />}>
+                             PLAY A GAME
                         </Button>
-                        <Modal show={show} onHide={handleClose}>
+                        <Modal show={show} onHide={handleClose} centered={true} size="lg">
                             <Modal.Header closeButton>
                                 <Modal.Title>Customize your gameplay</Modal.Title>
                             </Modal.Header>
@@ -54,12 +55,7 @@ export default function Home(props: any) {
                                             <td>
                                                 <center>
                                                     <GiGlassBall/>
-                                                    <Form.Control
-                                                        ref={colorBall}
-                                                        type="color"
-                                                        defaultValue="#FFFFFF"
-                                                        title="Choose ball color"
-                                                    />
+                                                    <ColorInput placeholder="Pick color" label="ball" ref={colorBall} defaultValue="#FFFFFF"/>
                                                 </center>
                                             </td>
                                         </tr>
@@ -107,23 +103,13 @@ export default function Home(props: any) {
                                             <td>
                                                 <center>
                                                     <IoMdPerson/>
-                                                    <Form.Control
-                                                        ref={colorPerson}
-                                                        type="color"
-                                                        defaultValue="#FFFFFF"
-                                                        title="Choose your color"
-                                                    />
+                                                    <ColorInput placeholder="Pick color" label="Humain" ref={colorPerson} defaultValue="#FFFFFF"/>
                                                 </center>
                                             </td>
                                             <td>
                                                 <center>
                                                     <GiArtificialIntelligence/>
-                                                    <Form.Control
-                                                        ref={colorAi}
-                                                        type="color"
-                                                        defaultValue="#FFFFFF"
-                                                        title="Choose ai color"
-                                                    />
+                                                    <ColorInput placeholder="Pick color" label="bot" ref={colorAi} defaultValue="#FFFFFF"/>
                                                 </center>
                                             </td>
                                         </tr>
@@ -140,15 +126,9 @@ export default function Home(props: any) {
                                             <td>
                                                 <center>
                                                 <ButtonGroup>
-                                                    <Button variant="success" style={{color: "white", border: "solid 1px black", boxShadow: "2px 2px 8px black"}} onClick={() => handleValueChange(1)}>
-                                                        <AiFillStar /> <AiOutlineStar/> <AiOutlineStar/>
-                                                    </Button>
-                                                    <Button variant="warning" style={{color: "white", border: "solid 1px black", boxShadow: "2px 2px 8px black"}} onClick={() => handleValueChange(2)}>
-                                                        <AiFillStar /> <AiFillStar /> <AiOutlineStar/>
-                                                    </Button>
-                                                    <Button variant="danger" style={{color: "white", border: "solid 1px black", boxShadow: "2px 2px 8px black"}} onClick={() => handleValueChange(3)}>
-                                                        <AiFillStar /> <AiFillStar /> <AiFillStar />
-                                                    </Button>
+                                                    <Button color="teal" radius="xs" uppercase onClick={() => handleValueChange(1)}> <AiFillStar /> <AiOutlineStar/> <AiOutlineStar/> </Button>
+                                                    <Button color="yellow" radius="xs" uppercase onClick={() => handleValueChange(2)}> <AiFillStar /> <AiFillStar /> <AiOutlineStar/> </Button>
+                                                    <Button color="red" radius="xs" uppercase onClick={() => handleValueChange(3)}> <AiFillStar /> <AiFillStar /> <AiFillStar /> </Button>
                                                 </ButtonGroup>
                                                 </center>
                                             </td>
@@ -157,9 +137,7 @@ export default function Home(props: any) {
                                 </Table>
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button variant="secondary" style={{color: "white", border: "solid 1px black", boxShadow: "2px 2px 8px black", left: "2%", position: "absolute"}} onClick={handleClose}>
-                                    Cancel
-                                </Button>
+                                <Button color="gray" radius="xs" uppercase style={{boxShadow: "0px 0px 2px black", left: "2%", position: "absolute"}} onClick={handleClose}>Cancel</Button>
                                 <br />
                                 <br />
                             </Modal.Footer>

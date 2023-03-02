@@ -24,6 +24,10 @@ export default function Game({personColor, aiColor, ballColor, initSpeed, maxSpe
     const canvas = document.getElementById('pong') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     let   ball: Ball = createBall(canvas, ballColor, getReverse(ballColor), maxSpeed);
+    ball.stop = true;
+    setTimeout(() => {
+      ball.stop = false;
+    }, 2000);
     let player1: Player = {
       width: canvas.width - ((99 * canvas.width) / 100),
       height: canvas.height - ((80 * canvas.height) / 100),
@@ -58,7 +62,7 @@ export default function Game({personColor, aiColor, ballColor, initSpeed, maxSpe
     });
     setInterval(()=> Prepare(canvas, ctx, ball, player1, player2, image), 1000 / FPS);
     setInterval(()=> Update(canvas, ctx, ball, player1, player2), initSpeed + 4);
-  }, []);
+  }, [personColor, aiColor, ballColor, initSpeed, maxSpeed, aiLevel, backGround]);
   return (
     <center>
       <div className="game-container">
