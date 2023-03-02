@@ -1,34 +1,26 @@
-import React, { useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+import React, { useState } from 'react'
+import { Carousel } from '@mantine/carousel';
 
 export default function ImageCrousel(props: any) {
-  const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex: React.SetStateAction<number>, e: any) => {
-    setIndex(selectedIndex);
-    setIndex(index + 1);
-    props.onChange(index);
-  };
+	const handleSelect = (selectedIndex: number) => {
+		props.onChange(selectedIndex);
+	};
+    const items = [];
 
-  const items = [];
-
-  for (let i: number = 0; i < 5; i++) {
-    items.push(
-    <Carousel.Item key={i}>
-        <img
-          className="d-block w-100"
-          src={`/background/${i.toString()}.jpg`}
-          alt="slide"
-        />
-        <Carousel.Caption>
-          <h3>Backgroud {(i + 1).toString()}</h3>
-        </Carousel.Caption>
-    </Carousel.Item>);
-  }
-
-  return (
-    <Carousel activeIndex={index} onSelect={handleSelect} style={{width: "30vw", height: "30vh"}} controls={false} fade={false}>
-        {items}
+    for (let i: number = 0; i < 6; i++) {
+      items.push(
+        <Carousel.Slide key={i}>
+          <img
+            className="d-block w-100"
+            src={`/background/${i.toString()}.jpg`}
+            alt="slide"
+          />
+        </Carousel.Slide>);
+    }
+    return (
+    <Carousel maw={960} mx="auto" withIndicators height={600} onSlideChange={handleSelect}>
+      {items}
     </Carousel>
   );
 }

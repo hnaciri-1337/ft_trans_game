@@ -4,7 +4,6 @@ import { Ball, createBall } from './Ball';
 import { Player } from './Player';
 import Prepare from "./Prepare"
 import Update from './Update';
-import Badge from 'react-bootstrap/Badge'
 
 function  getReverse(color: string): string
 {
@@ -18,6 +17,7 @@ export default function Game({personColor, aiColor, ballColor, initSpeed, maxSpe
   useEffect(() =>
   {
     const FPS = 60;
+    console.log(backGround);
     const randomOption = "/background/" + backGround.toString() + ".jpg";
     const image = new Image();
     image.src = randomOption;
